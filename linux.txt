@@ -1,0 +1,40 @@
+---- show current directory--------
+# pwd
+
+-------ssh server and open database----------------------------
+ssh user@ipaddress 
+1. #ssh root@162.144.88.10
+2. password
+3. #mysql -u USER_NAME -p
+4. password
+5. #show databases;
+6. #use database;
+7. #show tables;
+
+-------------giving a user permission for a directory--------------
+To give only your user permission to /var/www. You want to change the group owner to your primary group. If your username is joe this is how you would do it.
+
+#sudo chgrp joe /var/www
+You then need to chmod the directory so its writable by the group joe.
+
+#sudo chmod 775 /var/www
+after that you can write to /var/www
+
+If you want to be able to edit and delete existing files. You need to take ownership of them.
+
+#sudo chown -R joe /var/www/*
+
+---------------set file permsission for a specific file-------
+
+
+---------------export mysql database ---------------------
+##  mysqldump -u elitecs3_elite -p elitecs3_elitecommunity > eliteDB.sql
+
+---------------export a single table----------------------
+## mysqldump -p --user=username database_name tableName > tableName.sql
+
+---------------download item on linux serever-------------
+## scp root@162.144.88.10:/root/eliteDB.sql .  (run this from your location)
+
+##scp root@162.144.88.10:/home/sizwe/download/eliteDB.sql /tmp
+LINK https://my.bluehost.com/hosting/help/112

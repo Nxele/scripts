@@ -1,0 +1,31 @@
+
+
+
+-----------select last decord on the database--------
+SELECT * FROM TABLE_NAME ORDER BY USER_ID DESC LIMIT 1;
+
+--------------select sum Scrip for PHP----------------
+
+include ("connection/config.php");
+$link=mysqli_connect(db_host,db_user,db_password,db_name);
+$password = "dollar321";
+$total_amount_each = 0;
+$total_amount = 0;
+
+$sql_all = "SELECT * FROM users WHERE USER_PASSWORD = '$password'";
+$all_zinja = mysqli_query($link,$sql_zinja);
+
+while($data=mysqli_fetch_array($all_zinja)){
+	$inja = $data['USER_NAME'];
+
+	$user_amount = mysqli_query($link,"SELECT SUM(AMOUNT) FROM history WHERE USER_NAME ='$inja'");
+	while($total = mysqli_fetch_array($user_amount)){
+		$total_amount_each = $total[0];
+	}
+	
+	echo "<tr><td>$inja</td> <td>R $total_amount_each</td><tr>";
+	$total_amount = $total_amount + $total_amount_each;
+}
+echo "<tr><td><b>Eliet Cash Out<b></td><td><b>R $total_amount</b></td></tr>";
+echo "<table>";
+?>
